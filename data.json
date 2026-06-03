@@ -1,0 +1,586 @@
+{
+    "buildings": [
+        {
+            "name": "floor T1",
+            "visual": "images/buildings/floor1.png",
+            "type": "floor",
+            "color": "#8B4513",
+            "cost": [
+                {
+                    "name": "pine log",
+                    "quantity": 1
+                }
+            ]
+        },
+        {
+            "name": "floor T2",
+            "visual": "images/buildings/floor2.png",
+            "type": "floor",
+            "color": "#F5F5DC",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 5
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 5
+                }
+            ]
+        },
+        {
+            "name": "floor T3",
+            "visual": "images/buildings/floor3.png",
+            "type": "floor",
+            "color": "#C0C0C0",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 5
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 20
+                },
+                {
+                    "name": "iron plate",
+                    "quantity": 10
+                }
+            ]
+        },
+        {
+            "name": "floor T4",
+            "visual": "images/buildings/floor4.png",
+            "type": "floor",
+            "color": "#9b9b9b",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 5
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 20
+                },
+                {
+                    "name": "iron plate",
+                    "quantity": 30
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 15
+                },
+                {
+                    "name": "ash plank",
+                    "quantity": 20
+                }
+            ]
+        },
+        {
+            "name": "floor T5",
+            "visual": "images/buildings/floor5.png",
+            "type": "floor",
+            "color": "#FF8C00",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 5
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 20
+                },
+                {
+                    "name": "iron plate",
+                    "quantity": 30
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 15
+                },
+                {
+                    "name": "ash plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "titanium bar",
+                    "quantity": 10
+                }
+            ]
+        },
+        {
+            "name": "wall T1",
+            "visual": "images/buildings/wall1.png",
+            "type": "wall",
+            "color": "#3f2009",
+            "cost": [
+                {
+                    "name": "pine log",
+                    "quantity": 1
+                }
+            ]
+        },
+        {
+            "name": "wall T2",
+            "visual": "images/buildings/wall2.png",
+            "type": "wall",
+            "color": "#c7c7b3",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 5
+                }
+            ]
+        },
+        {
+            "name": "wall T3",
+            "visual": "images/buildings/wall3.png",
+            "type": "wall",
+            "color": "#bbbaba",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 20
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 10
+                }
+            ]
+        },
+        {
+            "name": "wall T4",
+            "visual": "images/buildings/wall4.png",
+            "type": "wall",
+            "color": "#7a7a7a",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 20
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 20
+                },
+                {
+                    "name": "aluminium plate",
+                    "quantity": 15
+                }
+            ]
+        },
+        {
+            "name": "wall T5",
+            "visual": "images/buildings/wall5.png",
+            "type": "wall",
+            "color": "#e07b00",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 20
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 30
+                },
+                {
+                    "name": "aluminium plate",
+                    "quantity": 15
+                },
+                {
+                    "name": "brick",
+                    "quantity": 20
+                }
+            ]
+        },
+        {
+            "name": "door T1",
+            "visual": "images/buildings/door1.png",
+            "type": "wall",
+            "color": "#66330f",
+            "cost": [
+                {
+                    "name": "pine log",
+                    "quantity": 1
+                }
+            ]
+        },
+        {
+            "name": "door T2",
+            "visual": "images/buildings/door2.png",
+            "type": "wall",
+            "color": "#c7c7b3",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 10
+                }
+            ]
+        },
+        {
+            "name": "door T3",
+            "visual": "images/buildings/door3.png",
+            "type": "wall",
+            "color": "#A9A9A9",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 30
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 20
+                }
+            ]
+        },
+        {
+            "name": "door T4",
+            "visual": "images/buildings/door4.png",
+            "type": "wall",
+            "color": "#7a7a7a",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 30
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 25
+                },
+                {
+                    "name": "aluminium plate",
+                    "quantity": 20
+                }
+            ]
+        },
+        {
+            "name": "door T5",
+            "visual": "images/buildings/door5.png",
+            "type": "wall",
+            "color": "#c06a01",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 30
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 55
+                },
+                {
+                    "name": "aluminium plate",
+                    "quantity": 20
+                },
+                {
+                    "name": "brick",
+                    "quantity": 15
+                }
+            ]
+        },
+        {
+            "name": "window T1",
+            "visual": "images/buildings/window1.png",
+            "type": "wall",
+            "color": "#66330f",
+            "cost": [
+                {
+                    "name": "pine log",
+                    "quantity": 1
+                }
+            ]
+        },
+        {
+            "name": "window T2",
+            "visual": "images/buildings/window2.png",
+            "type": "wall",
+            "color": "#c7c7b3",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 5
+                }
+            ]
+        },
+        {
+            "name": "window T3",
+            "visual": "images/buildings/window3.png",
+            "type": "wall",
+            "color": "#A9A9A9",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 20
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 10
+                }
+            ]
+        },
+        {
+            "name": "window T4",
+            "visual": "images/buildings/window4.png",
+            "type": "wall",
+            "color": "#7a7a7a",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 20
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 20
+                },
+                {
+                    "name": "aluminium plate",
+                    "quantity": 15
+                }
+            ]
+        },
+        {
+            "name": "window T5",
+            "visual": "images/buildings/window5.png",
+            "type": "wall",
+            "color": "#c06a01",
+            "cost": [
+                {
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "stone brick",
+                    "quantity": 20
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 30
+                },
+                {
+                    "name": "aluminium plate",
+                    "quantity": 15
+                },
+                {
+                    "name": "brick",
+                    "quantity": 20
+                }
+            ]
+        },
+        {
+            "name": "flower",
+            "visual": "images/ressources/pine_log.webp",
+            "type": "props",
+            "color": "yellow",
+            "cost": [
+                {
+                    "name": "pine log",
+                    "quantity": 1
+                }
+            ]
+        },
+        {
+            "name": "chest T1",
+            "visual": "images/ressources/pine_log.webp",
+            "type": "props",
+            "color": "red",
+            "cost": [
+                {
+                    "name": "pine log",
+                    "quantity": 1
+                }
+            ]
+        }
+    ],
+    "ressources": [
+    {
+      "name": "pine log",
+      "visual": "images/ressources/pine_log.webp"
+    },
+    {
+      "name": "pine plank",
+      "visual": "images/ressources/pine_plank.webp"
+    },
+    {
+      "name": "oak log",
+      "visual": "images/ressources/oak_log.webp"
+    },
+    {
+      "name": "oak plank",
+      "visual": "images/ressources/oak_plank.webp"
+    },
+    {
+      "name": "ash log",
+      "visual": "images/ressources/ash_log.webp"
+    },
+    {
+      "name": "ash plank",
+      "visual": "images/ressources/ash_plank.webp"
+    },
+    {
+      "name": "limestone",
+      "visual": "images/ressources/limestone.webp"
+    },
+    {
+      "name": "stone brick",
+      "visual": "images/ressources/stone_brick.webp"
+    },
+    {
+      "name": "brick",
+      "visual": "images/ressources/brick.webp"
+    },
+    {
+      "name": "bauxite",
+      "visual": "images/ressources/bauxite.webp"
+    },
+    {
+      "name": "scrap metal",
+      "visual": "images/ressources/scrap_metal.webp"
+    },
+    {
+      "name": "iron ore",
+      "visual": "images/ressources/iron_ore.webp"
+    },
+    {
+      "name": "iron bar",
+      "visual": "images/ressources/iron_bar.webp"
+    },
+    {
+      "name": "iron plate",
+      "visual": "images/ressources/iron_plate.webp"
+    },
+    {
+      "name": "aluminium bar",
+      "visual": "images/ressources/aluminium_bar.webp"
+    },
+    {
+      "name": "aluminium plate",
+      "visual": "images/ressources/aluminium_plate.webp"
+    },
+    {
+      "name": "steel bar",
+      "visual": "images/ressources/steel_bar.webp"
+    },
+    {
+      "name": "steel plate",
+      "visual": "images/ressources/steel_plate.webp"
+    },
+    {
+      "name": "titanium bar",
+      "visual": "images/ressources/titanium_bar.webp"
+    },
+    {
+      "name": "copper ore",
+      "visual": "images/ressources/copper_ore.webp"
+    },
+    {
+      "name": "sulfur",
+      "visual": "images/ressources/sulfur.webp"
+    },
+    {
+      "name": "rope",
+      "visual": "images/ressources/rope.webp"
+    },
+    {
+      "name": "plant fiber",
+      "visual": "images/ressources/plant_fiber.webp"
+    },
+    {
+      "name": "rubber parts",
+      "visual": "images/ressources/rubber_parts.webp"
+    },
+    {
+      "name": "duct tape",
+      "visual": "images/ressources/duct_tape.webp"
+    },
+    {
+      "name": "adhesive",
+      "visual": "images/ressources/adhesive.webp"
+    },
+    {
+      "name": "animal rawhide",
+      "visual": "images/ressources/animal_rawhide.webp"
+    },
+    {
+      "name": "fur",
+      "visual": "images/ressources/fur.webp"
+    },
+    {
+      "name": "piece of cloth",
+      "visual": "images/ressources/piece_of_cloth.webp"
+    },
+    {
+      "name": "peat",
+      "visual": "images/ressources/peat.webp"
+    },
+    {
+      "name": "carrot seed",
+      "visual": "images/ressources/carrot_seed.webp"
+    }
+  ]
+}

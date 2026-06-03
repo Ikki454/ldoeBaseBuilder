@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+  <title>LDOE Base Builder</title>
+
+  <link rel="stylesheet" href="index.css">
+  <script type="module" src="index.js"></script>
+</head>
+<body>
+    <header>
+    <h1>LDOE Base Builder</h1>
+    </header>
+    <main>
+        <div class="panel-grid">
+            <div class="panel building-panel">
+                <div class="panel-header">
+                    <h2>building</h2>
+                    <div class="dropdown">
+                        <button id="dropdown-btn" class="btn"> Sort by </button>
+                        <div class="dropdown-content">
+                            <button>Structure</button>
+                            <button>Workbench</button>
+                            <button>Other</button>
+                            <button>Special</button>
+                        </div>
+                        <button id="hide-building" class="btn"><-</button>
+                    </div>
+                </div>
+                <div class="building-grid">
+                    <!-- cellule générée dynamiquement -->
+                    <!-- exemple de cellule
+                    <div class="building-cell">
+                        <img src="image/building/wood_wall.png" alt="wood wall">
+                        <p>building name</p>
+                    </div>
+                    -->
+                </div>
+            </div>
+
+            <div class="panel base-plan-panel">
+                <div class="base-grid">
+                    <!-- cellule générée dynamiquement -->
+                    <!-- exemple de cellule
+                        <button class="base-cell"></button>
+                    -->
+                </div>
+            </div>
+
+            <div class="panel ressource-panel">
+                <div class="panel-header">
+                    <div class="horizontal-group">
+                        <button id="hide-ressources" class="btn">-></button>
+                        <h2>ressource list</h2>
+                    </div>
+                    <div>
+                        <button id="clear-base-plan" class="btn">clear plan</button>
+                        <button id="clear-ressources" class="btn">clear ressources</button>
+                    </div>
+                </div>
+                <ul class="ressource-list">
+                    <!-- <li>
+                            <div>
+                                <img src="images/ressources/pine_log.webp" alt="wood log">
+                                <p>wood log</p>
+                            </div>
+                            <p>x10</p>
+                        </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
