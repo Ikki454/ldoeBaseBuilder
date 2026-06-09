@@ -11,7 +11,11 @@
 </head>
 <body>
     <header>
-    <h1>LDOE Base Builder</h1>
+        <h1>LDOE Base Builder</h1>
+        <div>
+            <button id="clear-base-plan" class="btn">clear plan</button>
+            <button id="clear-ressources" class="btn">clear ressources</button>
+        </div>
     </header>
     <main>
         <div class="panel-grid">
@@ -21,12 +25,13 @@
                     <div class="dropdown">
                         <button id="dropdown-btn" class="btn"> Sort by </button>
                         <div class="dropdown-content">
-                            <button>Structure</button>
-                            <button>Workbench</button>
-                            <button>Other</button>
-                            <button>Special</button>
+                            <button id="all" class="b-dropdown-btn">All</button>
+                            <button id="structure" class="b-dropdown-btn">Structure</button>
+                            <button id="storage" class="b-dropdown-btn">Storage</button>
+                            <button id="workbench" class="b-dropdown-btn">Workbench</button>
+                            <button id="other" class="b-dropdown-btn">Other</button>
+                            <button id="special" class="b-dropdown-btn">Special</button>
                         </div>
-                        <button id="hide-building" class="btn"><-</button>
                     </div>
                 </div>
                 <div class="building-grid">
@@ -51,14 +56,18 @@
 
             <div class="panel ressource-panel">
                 <div class="panel-header">
-                    <div class="horizontal-group">
-                        <button id="hide-ressources" class="btn">-></button>
-                        <h2>ressource list</h2>
+                    <h2>ressource list</h2>
+                    <div class="dropdown">
+                        <button id="dropdown-btn" class="btn"> Sort by </button>
+                        <div class="dropdown-content">
+                            <button id="''" class="r-dropdown-btn">All</button>
+                            <button id="quantity-asc" class="r-dropdown-btn">Ascending</button>
+                            <button id="quantity-desc" class="r-dropdown-btn">Descending</button>
+                            <button id="name-asc" class="r-dropdown-btn">A To Z</button>
+                            <button id="name-desc" class="r-dropdown-btn">Z To A</button>
+                        </div>
                     </div>
-                    <div>
-                        <button id="clear-base-plan" class="btn">clear plan</button>
-                        <button id="clear-ressources" class="btn">clear ressources</button>
-                    </div>
+                    
                 </div>
                 <ul class="ressource-list">
                     <!-- <li>

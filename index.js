@@ -1,4 +1,5 @@
 let currentBuilding = null;
+let ressourceFilter = '';
 
 let noBuildableColor = '#9c1f1f';
 let buildableColor = '#3c5f35';
@@ -26,7 +27,32 @@ clearBasePlanBtn.addEventListener("click", () => {
     ressourceList.innerHTML = '';
 });
 
-//hide btns
+
+//building Filter
+const filterBtn = document.querySelectorAll(".b-dropdown-btn");
+filterBtn.forEach(input => {
+    input.addEventListener("click", () => {
+
+        const filterValue = input.id.toLowerCase();
+
+        if (filterValue === "all") {
+            generateBuildings(Array.from(buildingMap.values()));
+            return;
+        }
+        
+        generateBuildings(Array.from(buildingMap.values()).filter(b => b.buildingType === filterValue));
+    });
+});
+
+//ressource Filter
+const filterRessourceBtn = document.querySelectorAll(".r-dropdown-btn");
+filterRessourceBtn.forEach(input => {
+    input.addEventListener("click", () => {
+
+        ressourceFilter = input.id.toLowerCase();
+        totalRessourceUsed(ressourceFilter);
+    });
+});
 
 async function loadData() {
     const response = await fetch("data.json");
@@ -45,6 +71,8 @@ async function loadData() {
 }
 
 function generateBuildings(buildings) {
+
+    buildingGrid.innerHTML = '';
 
     for (const building of buildings) {
 
@@ -82,7 +110,6 @@ function generateBasePlan(){
             baseCell.addEventListener('click', onClickBaseCell);
             
             baseCell.addEventListener("mousemove", onMouseOverBaseCell);
-            baseCell.addEventListener("mouseleave", onMouseLeaveBaseCell);
 
             if (num.includes(j) && i > 12) {
                 baseCell.style.backgroundColor = noBuildableColor;
@@ -92,7 +119,11 @@ function generateBasePlan(){
             }
             baseCell.dataset.index = i * 18 + j;
 
+            const propsVisual = document.createElement('img');
+            propsVisual.style.opacity = 0.0;
+
             baseGrid.appendChild(baseCell);
+            baseCell.appendChild(propsVisual);
         }
     }
 }
@@ -143,6 +174,11 @@ function onClickBuilding(event) {
         if (!cell.dataset.building) {
             cell.style.backgroundColor = cell.dataset.noBuild === 'true' ? noBuildableColor : buildableColor;
         }
+
+        if (!cell.dataset.props) {
+            const cellVisual = cell.querySelector('img');
+            cellVisual.style.opacity = 0;
+        }
     }
 }
 function onClickBaseCell(event) {
@@ -151,39 +187,56 @@ function onClickBaseCell(event) {
     if (currentBuilding !== null) {
         const building = buildingMap.get(currentBuilding);
 
-        if (building.type === 'wall') {
+        switch (building.type) {
 
-            const index = targetCell.dataset.index;
-            const side = getClosestBorder(targetCell, event.clientX, event.clientY);
-            const neighborCell = getNeighborCell(index, side);
+            case 'wall':
+                const index = targetCell.dataset.index;
+                const side = getClosestBorder(targetCell, event.clientX, event.clientY);
+                const neighborCell = getNeighborCell(index, side);
 
-            drawBorder(side, targetCell, neighborCell, `3px solid ${building.color}`);
-                
-            switch (side) {
-                case 'top':
-                    targetCell.dataset.buildingTop = building.name;
-                    if (neighborCell) neighborCell.dataset.buildingBottom = building.name;     
-                    break;
-                case 'bottom':
-                    targetCell.dataset.buildingBottom = building.name;
-                    if (neighborCell) neighborCell.dataset.buildingTop = building.name;
-                    break;
-                case 'left':
-                    targetCell.dataset.buildingLeft = building.name;
-                    if (neighborCell) neighborCell.dataset.buildingRight = building.name;
-                    break;
-                case 'right':
-                    targetCell.dataset.buildingRight = building.name;
-                    if (neighborCell) neighborCell.dataset.buildingLeft = building.name;
-                    break;
-            }
+                drawBorder(side, targetCell, neighborCell, `3px solid ${building.color}`);
+                    
+                switch (side) {
+                    case 'top':
+                        targetCell.dataset.buildingTop = building.name;
+                        if (neighborCell) neighborCell.dataset.buildingBottom = building.name;     
+                        break;
+                    case 'bottom':
+                        targetCell.dataset.buildingBottom = building.name;
+                        if (neighborCell) neighborCell.dataset.buildingTop = building.name;
+                        break;
+                    case 'left':
+                        targetCell.dataset.buildingLeft = building.name;
+                        if (neighborCell) neighborCell.dataset.buildingRight = building.name;
+                        break;
+                    case 'right':
+                        targetCell.dataset.buildingRight = building.name;
+                        if (neighborCell) neighborCell.dataset.buildingLeft = building.name;
+                        break;
+                }
+                break;
+
+            case 'floor':
+                targetCell.style.backgroundColor = building.color;
+                targetCell.dataset.building = building.name;
+                break;
+
+            case 'props':
+                const propsVisual = targetCell.querySelector('img');
+
+                propsVisual.src = building.visual;
+                propsVisual.style.opacity = 1.0;
+
+                targetCell.dataset.props = building.name;
+                break;
+
+            default:
+                console.error(`Unhandled building type: ${building.type}`);
+                alert('sorry, building type not supported yet');
+                break;
         }
-        else {
-            targetCell.style.backgroundColor = building.color;
-            targetCell.dataset.building = building.name;
-        }
 
-        totalRessourceUsed();
+        totalRessourceUsed(ressourceFilter);
     }
     else {
         alert('Please select a building first');
@@ -199,14 +252,17 @@ function onMouseOverBaseCell(event) {
     if (targetCell.dataset.noBuild) {
 
         const preCell = document.querySelector(`.base-grid`).children[previousCell];
-        if (preCell.dataset.noBuild) {
-            preCell.style.backgroundColor = noBuildableColor;
-        }
-        else if (!preCell.dataset.building) {
+
+        if (!preCell.dataset.building) {
             preCell.style.backgroundColor = buildableColor;
         }
 
-        clearBorders(preCell);
+        if (!preCell.dataset.props) {
+            const preCellVisual = preCell.querySelector('img');
+            preCellVisual.style.opacity = 0;
+        }
+
+        clearBorders(targetCell.dataset.index);
         return;
     }
 
@@ -245,56 +301,52 @@ function onMouseOverBaseCell(event) {
             const side = getClosestBorder(targetCell, event.clientX, event.clientY);
             const neighborCell = getNeighborCell(index, side);
 
+            //clear previous cell if exist and different from current
             if (previousCell) {
                 if (index !== previousCell) {
                     clearBorders(previousCell);
                 }
             }
-
             clearBorders(index);
+
             drawBorder(side, targetCell, neighborCell, `3px solid ${building.color}`);
 
             previousCell = index;
             break;
+
+        case 'props':
+
+            //clear previous cell if exist and different from current
+            if (previousCell) {
+                if (index !== previousCell) {
+
+                    const preCell = document.querySelector(`.base-grid`).children[previousCell];
+                    const preCellVisual = preCell.querySelector('img');
+
+                    if (!preCell.dataset.props)  {
+
+                        preCellVisual.style.opacity = 0.0;
+                    }
+                    else {
+
+                        const preProps = buildingMap.get(preCell.dataset.props);
+                        if (preProps !== building) {
+
+                            preCellVisual.src = preProps.visual;
+                            preCellVisual.style.opacity = 1.0;
+                        }
+                    }
+                }
+            }
+
+            const propsVisual = targetCell.querySelector('img');
+
+            propsVisual.src = building.visual;
+            propsVisual.style.opacity = 1.0;
+
+            previousCell = index;
+            break;
     }   
-}
-function onMouseLeaveBaseCell(event) {
-    const targetCell = event.currentTarget;
-
-    const building = buildingMap.get(currentBuilding);
-    if (!building) return;
-
-    if (targetCell.style.backgroundColor !== noBuildableColor) {
-
-        if (building.type === 'wall'){
-            switch (previousSide) {
-                case 'top':
-                    targetCell.dataset.buildingTop = '0';
-                    targetCell.style.border = borderColor;
-                    break;
-                case 'bottom':
-                    targetCell.dataset.buildingBottom = '0';
-                    targetCell.style.border = borderColor;
-                    break;
-                case 'left':
-                    targetCell.dataset.buildingLeft = '0';
-                    targetCell.style.border = borderColor;
-                    break;
-                case 'right':
-                    targetCell.dataset.buildingRight = '0';
-                    targetCell.style.border = borderColor;
-                    break;
-            }
-        }
-        else{
-            if (targetCell.dataset.building === '0'){
-                targetCell.style.backgroundColor = 
-                targetCell.dataset.name === 'none' ? noBuildableColor : buildableColor;
-            }
-        }
-    }
-
-    previousCell = targetCell.dataset.index;
 }
 
 function drawBorder(side, cell, neighborCell, color) {
@@ -408,13 +460,15 @@ function getNeighborCell(index, side) {
     return null;
 }
 
-function totalRessourceUsed() {
+function totalRessourceUsed(filter) {
 
     const ressourcesUsed = new Map();
 
     for (const cell of baseGrid.children) {
 
         const building = cell.dataset.building;
+        const buildingProps = cell.dataset.props;
+
         const buildingTop = cell.dataset.buildingTop;
         const buildingBottom = cell.dataset.buildingBottom;
         const buildingLeft = cell.dataset.buildingLeft;
@@ -425,6 +479,7 @@ function totalRessourceUsed() {
         const col = index % 18;
 
         addBuilding(building, ressourcesUsed);
+        addBuilding(buildingProps, ressourcesUsed);
 
         if (row === 0 && col === 0) {
             addBuilding(buildingTop, ressourcesUsed);
@@ -452,7 +507,34 @@ function totalRessourceUsed() {
         addBuilding(buildingRight, ressourcesUsed);
     }
 
-    generateRessources(Array.from(ressourcesUsed.values()));
+    let ressource = Array.from(ressourcesUsed.values())
+
+    if (filter !== '') {
+
+        switch (filter) {
+            case "quantity-asc":
+                ressource.sort((a, b) => a.quantity - b.quantity);
+                break;
+
+            case "quantity-desc":
+                ressource.sort((a, b) => b.quantity - a.quantity);
+                break;
+
+            case "name-asc":
+                ressource.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+
+            case "name-desc":
+                ressource.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+        }
+
+        generateRessources(ressource);
+
+    }
+    else{
+        generateRessources(ressource);
+    }
 }
 function addBuilding(buildingName, ressourcesUsed) {
 
