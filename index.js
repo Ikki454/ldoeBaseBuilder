@@ -15,16 +15,32 @@ const ressourceList = document.querySelector(".ressource-list");
 let buildingMap;
 let ressourceMap;
 
-const clearRessourcesBtn = document.querySelector("#clear-ressources");
-clearRessourcesBtn.addEventListener("click", () => {
-    ressourceList.innerHTML = '';
-});
+const clearBtns = document.querySelectorAll(".c-dropdown-btn");
+clearBtns.forEach(input => {
+    input.addEventListener("click", () => {
 
-const clearBasePlanBtn = document.querySelector("#clear-base-plan");
-clearBasePlanBtn.addEventListener("click", () => {
-    baseGrid.innerHTML = '';
-    generateBasePlan();
-    ressourceList.innerHTML = '';
+        const filterValue = input.id.toLowerCase();
+
+        switch (filterValue) {
+            case 'del-base-plan':
+                baseGrid.innerHTML = '';
+                generateBasePlan();
+                ressourceList.innerHTML = '';
+                break;
+
+            case 'del-ressources':
+                ressourceList.innerHTML = '';
+
+
+                break;
+
+            case 'del-props':
+                for (const cell of baseGrid.children) {
+                    cell.dataset.props = null;
+                }
+                break;
+        }
+    });
 });
 
 
