@@ -265,14 +265,11 @@ function onClickBaseCell(event) {
 
                 targetCell.dataset.props = building.name;
                 break;
-
-            default:
-                console.error(`Unhandled building type: ${building.type}`);
-                alert('sorry, building type not supported yet');
-                break;
         }
 
         totalRessourceUsed(ressourceFilter);
+
+        enableConstruction();
     }
     else {
         alert('Please select a building first');
@@ -303,7 +300,6 @@ function onMouseOverBaseCell(event) {
     }
 
     const building = buildingMap.get(currentBuilding);
-
     const index = targetCell.dataset.index;
 
     switch(building.type) {
@@ -311,7 +307,7 @@ function onMouseOverBaseCell(event) {
 
             //clear previous cell if exist and different from current
             if (previousCell) {
-                if (index !== previousCell){
+                if (index !== previousCell) {
 
                     const preCell = document.querySelector(`.base-grid`).children[previousCell];
                     if (!preCell.dataset.building)  {
@@ -319,10 +315,15 @@ function onMouseOverBaseCell(event) {
                         preCell.dataset.noBuild === 'true' ? noBuildableColor : buildableColor;
                     }
                     else {
-                        const preBuilding = buildingMap.get(preCell.dataset.building);
-                        if (preBuilding !== building) {
-                            preCell.style.backgroundColor = preBuilding.color;
+                        if (enableBuildings) {
+                            const preBuilding = buildingMap.get(preCell.dataset.building);
+                            if (preBuilding !== building) {
+                                preCell.style.backgroundColor = preBuilding.color;
+                            }
+                        }else{
+                            
                         }
+                        
                     }
                 }
             }
@@ -604,11 +605,32 @@ function addBuilding(buildingName, ressourcesUsed) {
     }
 }
 
-function enableConstruction(){
+function enableConstruction() {
     for (const cell of baseGrid.children) {
 
+        if (enableBuildings) {
+            cell.style.backgroundColor = cell.dataset.noBuild ? noBuildableColor : buildableColor;
+        }
+        else{
+            if (cell.dataset.building) {
+                const build = buildingMap.get(cell.dataset.building);
+                cell.style.backgroundColor = build.color;
+            }else{
+                cell.style.backgroundColor = cell.dataset.noBuild ? noBuildableColor : buildableColor;
+            }
+        }
+
         const cellVisual = cell.querySelector('img');
-        cellVisual.style.opacity = 0;
+
+        if (enabbleProps) {
+
+            const cellVisual = cell.querySelector('img');
+            cellVisual.style.opacity = cell.dataset.props ? 1 : 0;
+        }
+        else{
+            cellVisual.style.opacity = 0;
+        }
+        
     }
 }
 
