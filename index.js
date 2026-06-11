@@ -12,9 +12,16 @@ const buildingGrid = document.querySelector(".building-grid");
 const baseGrid = document.querySelector(".base-grid");
 const ressourceList = document.querySelector(".ressource-list");
 
+let ressourcesList = [];
+let ressourcesDenie = [];
+
+let enableBuildings = true;
+let enabbleProps = true;
+
 let buildingMap;
 let ressourceMap;
 
+//clear dropdown
 const clearBtns = document.querySelectorAll(".c-dropdown-btn");
 clearBtns.forEach(input => {
     input.addEventListener("click", () => {
@@ -26,25 +33,27 @@ clearBtns.forEach(input => {
                 baseGrid.innerHTML = '';
                 generateBasePlan();
                 ressourceList.innerHTML = '';
+                ressourcesDenie = [];
                 break;
 
-            case 'del-ressources':
+            case 'reset-ressources':
+                ressourcesDenie = ressourcesList;
                 ressourceList.innerHTML = '';
-
-
                 break;
 
-            case 'del-props':
-                for (const cell of baseGrid.children) {
-                    cell.dataset.props = null;
-                }
+            case 'enable-buildings':
+                enableBuildings = !enableBuildings;
+                enableConstruction();
+                break;
+
+            case 'enable-props':
+                enabbleProps = !enabbleProps;
+                enableConstruction();
                 break;
         }
     });
 });
-
-
-//building Filter
+//building Filter dropdown
 const filterBtn = document.querySelectorAll(".b-dropdown-btn");
 filterBtn.forEach(input => {
     input.addEventListener("click", () => {
@@ -59,8 +68,7 @@ filterBtn.forEach(input => {
         generateBuildings(Array.from(buildingMap.values()).filter(b => b.buildingType === filterValue));
     });
 });
-
-//ressource Filter
+//ressource Filter dropdown
 const filterRessourceBtn = document.querySelectorAll(".r-dropdown-btn");
 filterRessourceBtn.forEach(input => {
     input.addEventListener("click", () => {
@@ -70,21 +78,18 @@ filterRessourceBtn.forEach(input => {
     });
 });
 
+
 async function loadData() {
     const response = await fetch("data.json");
     let data = await response.json();
 
-    buildingMap = new Map(
-        data.buildings.map(b => [b.name, b])
-    );
-
-    ressourceMap = new Map(
-        data.ressources.map(r => [r.name, r])
-    );
+    buildingMap = new Map(data.buildings.map(b => [b.name, b]));
+    ressourceMap = new Map(data.ressources.map(r => [r.name, r]));
 
     generateBuildings(data.buildings);
     generateBasePlan();
 }
+
 
 function generateBuildings(buildings) {
 
@@ -113,7 +118,7 @@ function generateBuildings(buildings) {
         buildingGrid.appendChild(cell);
     }
 }
-function generateBasePlan(){
+function generateBasePlan() {
     const baseGrid = document.querySelector('.base-grid');
 
     const num = [12, 13, 14, 15];
@@ -144,10 +149,22 @@ function generateBasePlan(){
     }
 }
 function generateRessources(ressources) {
-    const ressourceList = document.querySelector('.ressource-list');
     ressourceList.innerHTML = '';
 
-    for (const r of ressources) {
+    //denie ressource
+    const currentMap = new Map(
+        ressourcesDenie.map(r => [r.name, r.quantity])
+    );
+
+    const resultRessources = ressources.map(r => ({
+        name: r.name,
+        visual: r.visual,
+        quantity: r.quantity - (currentMap.get(r.name) ?? 0)
+    }));
+
+    //show ressourece list - denie
+    for (const r of resultRessources) {
+
         const ressourceItem = document.createElement('li');
 
         const article = document.createElement('div');
@@ -198,7 +215,10 @@ function onClickBuilding(event) {
     }
 }
 function onClickBaseCell(event) {
+
     const targetCell = event.currentTarget;
+
+    if (targetCell.dataset.noBuild) return;
     
     if (currentBuilding !== null) {
         const building = buildingMap.get(currentBuilding);
@@ -480,6 +500,7 @@ function totalRessourceUsed(filter) {
 
     const ressourcesUsed = new Map();
 
+    //add all vonstruction cost to ressourcesUsed
     for (const cell of baseGrid.children) {
 
         const building = cell.dataset.building;
@@ -523,33 +544,33 @@ function totalRessourceUsed(filter) {
         addBuilding(buildingRight, ressourcesUsed);
     }
 
-    let ressource = Array.from(ressourcesUsed.values())
+    ressourcesList = Array.from(ressourcesUsed.values());
 
+    //manage ressource filter
     if (filter !== '') {
 
         switch (filter) {
             case "quantity-asc":
-                ressource.sort((a, b) => a.quantity - b.quantity);
+                ressourcesList.sort((a, b) => a.quantity - b.quantity);
                 break;
 
             case "quantity-desc":
-                ressource.sort((a, b) => b.quantity - a.quantity);
+                ressourcesList.sort((a, b) => b.quantity - a.quantity);
                 break;
 
             case "name-asc":
-                ressource.sort((a, b) => a.name.localeCompare(b.name));
+                ressourcesList.sort((a, b) => a.name.localeCompare(b.name));
                 break;
 
             case "name-desc":
-                ressource.sort((a, b) => b.name.localeCompare(a.name));
+                ressourcesList.sort((a, b) => b.name.localeCompare(a.name));
                 break;
         }
-
-        generateRessources(ressource);
+        generateRessources(ressourcesList);
 
     }
     else{
-        generateRessources(ressource);
+        generateRessources(ressourcesList);
     }
 }
 function addBuilding(buildingName, ressourcesUsed) {
@@ -580,6 +601,14 @@ function addBuilding(buildingName, ressourcesUsed) {
                 quantity: material.quantity
             });
         }
+    }
+}
+
+function enableConstruction(){
+    for (const cell of baseGrid.children) {
+
+        const cellVisual = cell.querySelector('img');
+        cellVisual.style.opacity = 0;
     }
 }
 
