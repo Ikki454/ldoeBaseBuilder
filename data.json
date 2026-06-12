@@ -680,8 +680,8 @@
             ]
         },
         {
-            "name": "étagére",
-            "visual": "images/buildings/etagere.webp",
+            "name": "bookshelf",
+            "visual": "images/buildings/bookshelf.webp",
             "type": "props",
             "buildingType": "storage",
             

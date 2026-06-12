@@ -15,8 +15,8 @@ const ressourceList = document.querySelector(".ressource-list");
 let ressourcesList = [];
 let ressourcesDenie = [];
 
-let enableBuildings = true;
-let enabbleProps = true;
+let enableBuildings = false;
+let enableProps = false;
 
 let buildingMap;
 let ressourceMap;
@@ -47,7 +47,7 @@ clearBtns.forEach(input => {
                 break;
 
             case 'enable-props':
-                enabbleProps = !enabbleProps;
+                enableProps = !enableProps;
                 enableConstruction();
                 break;
         }
@@ -205,11 +205,12 @@ function onClickBuilding(event) {
         clearBorders(cell.dataset.index);
 
         if (!cell.dataset.building) {
-            cell.style.backgroundColor = cell.dataset.noBuild === 'true' ? noBuildableColor : buildableColor;
+            cell.style.backgroundColor = cell.dataset.noBuild ? noBuildableColor : buildableColor;
         }
 
         if (!cell.dataset.props) {
             const cellVisual = cell.querySelector('img');
+            cellVisual.src = null;
             cellVisual.style.opacity = 0;
         }
     }
@@ -268,8 +269,6 @@ function onClickBaseCell(event) {
         }
 
         totalRessourceUsed(ressourceFilter);
-
-        enableConstruction();
     }
     else {
         alert('Please select a building first');
@@ -316,14 +315,15 @@ function onMouseOverBaseCell(event) {
                     }
                     else {
                         if (enableBuildings) {
+                            preCell.style.backgroundColor = 
+                            preCell.dataset.noBuild ? noBuildableColor : buildableColor;
+                        }
+                        else{
                             const preBuilding = buildingMap.get(preCell.dataset.building);
                             if (preBuilding !== building) {
                                 preCell.style.backgroundColor = preBuilding.color;
                             }
-                        }else{
-                            
                         }
-                        
                     }
                 }
             }
@@ -361,16 +361,20 @@ function onMouseOverBaseCell(event) {
                     const preCellVisual = preCell.querySelector('img');
 
                     if (!preCell.dataset.props)  {
-
-                        preCellVisual.style.opacity = 0.0;
+                        preCellVisual.src = null;
+                        preCellVisual.style.opacity = 0;
                     }
                     else {
+                        if (enableProps) {
+                            preCellVisual.style.opacity = 0;
+                        }
+                        else{
+                            const preProps = buildingMap.get(preCell.dataset.props);
+                            if (preProps !== building) {
 
-                        const preProps = buildingMap.get(preCell.dataset.props);
-                        if (preProps !== building) {
-
-                            preCellVisual.src = preProps.visual;
-                            preCellVisual.style.opacity = 1.0;
+                                preCellVisual.src = preProps.visual;
+                                preCellVisual.style.opacity = 1;
+                            }
                         }
                     }
                 }
@@ -418,13 +422,45 @@ function clearBorders(index) {
 
     clearAllBorders(grid.children[index]);
 
-    if (leftCell) clearAllBorders(leftCell);
+    if (leftCell) {
+        if (!leftCell.dataset.buildingRight) {
+            leftCell.style.borderRight = borderColor;
+        }
+        else if (leftCell.dataset.buildingRight !== currentBuilding) {
+            leftCell.style.borderRight = !enableBuildings ? 
+                `3px solid ${buildingMap.get(leftCell.dataset.buildingTop).color}`: borderColor;
+        }
+    }
 
-    if (rightCell) clearAllBorders(rightCell);
+    if (rightCell) {
+        if (!rightCell.dataset.buildingLeft) {
+            rightCell.style.borderLeft = borderColor;
+        }
+        else if (rightCell.dataset.buildingLeft !== currentBuilding) {
+            rightCell.style.borderLeft = !enableBuildings ? 
+                `3px solid ${buildingMap.get(rightCell.dataset.buildingTop).color}`: borderColor;
+        }
+    }
 
-    if (topCell) clearAllBorders(topCell);
+    if (topCell) {
+        if (!topCell.dataset.buildingBottom) {
+            topCell.style.borderBottom = borderColor;
+        }
+        else if (topCell.dataset.buildingBottom !== currentBuilding) {
+            topCell.style.borderBottom = !enableBuildings ? 
+                `3px solid ${buildingMap.get(topCell.dataset.buildingTop).color}`: borderColor;
+        }
+    }
 
-    if (bottomCell) clearAllBorders(bottomCell);
+    if (bottomCell) {
+        if (!bottomCell.dataset.buildingTop) {
+            bottomCell.style.borderTop = borderColor;
+        }
+        else if (bottomCell.dataset.buildingTop !== currentBuilding) {
+            bottomCell.style.borderTop = !enableBuildings ? 
+                `3px solid ${buildingMap.get(bottomCell.dataset.buildingTop).color}`: borderColor;
+        }
+    }
 }
 function clearAllBorders(cell) {
 
@@ -434,28 +470,32 @@ function clearAllBorders(cell) {
         cell.style.borderTop = borderColor;
     }
     else if (cell.dataset.buildingTop !== currentBuilding) {
-        cell.style.borderTop = `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`;
+        cell.style.borderTop = enableBuildings ? 
+            `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`: borderColor;
     }
 
     if (!cell.dataset.buildingBottom) {
         cell.style.borderBottom = borderColor;
     }
     else if (cell.dataset.buildingBottom !== currentBuilding) {
-        cell.style.borderBottom = `3px solid ${buildingMap.get(cell.dataset.buildingBottom).color}`;
+        cell.style.borderBottom = enableBuildings ? 
+            `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`: borderColor;
     }
 
     if (!cell.dataset.buildingLeft) {
         cell.style.borderLeft = borderColor;
     }
     else if (cell.dataset.buildingLeft !== currentBuilding) {
-        cell.style.borderLeft = `3px solid ${buildingMap.get(cell.dataset.buildingLeft).color}`;
+        cell.style.borderLeft = enableBuildings ? 
+            `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`: borderColor;
     }
 
     if (!cell.dataset.buildingRight) {
         cell.style.borderRight = borderColor;
     }
     else if (cell.dataset.buildingRight !== currentBuilding) {
-        cell.style.borderRight = `3px solid ${buildingMap.get(cell.dataset.buildingRight).color}`;
+        cell.style.borderRight = enableBuildings ? 
+            `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`: borderColor;
     }
 }
 
@@ -609,28 +649,61 @@ function enableConstruction() {
     for (const cell of baseGrid.children) {
 
         if (enableBuildings) {
+
             cell.style.backgroundColor = cell.dataset.noBuild ? noBuildableColor : buildableColor;
+
+            cell.style.borderTop = borderColor;
+            cell.style.borderBottom = borderColor;
+            cell.style.borderRight = borderColor;
+            cell.style.borderLeft = borderColor;
         }
         else{
             if (cell.dataset.building) {
                 const build = buildingMap.get(cell.dataset.building);
                 cell.style.backgroundColor = build.color;
-            }else{
+            }
+            else {
+
                 cell.style.backgroundColor = cell.dataset.noBuild ? noBuildableColor : buildableColor;
+
+                cell.style.borderTop = borderColor;
+                cell.style.borderBottom = borderColor;
+                cell.style.borderRight = borderColor;
+                cell.style.borderLeft = borderColor;
+            }
+
+            if (!cell.dataset.buildingTop) {
+                cell.style.borderTop = borderColor;
+            }else{
+                const build = buildingMap.get(cell.dataset.buildingTop);
+                cell.style.borderTop = build.color;
+            }
+
+            if (!cell.dataset.borderBottom) {
+                cell.style.borderBottom = borderColor;
+            }else{
+                const build = buildingMap.get(cell.dataset.borderBottom);
+                cell.style.borderBottom = build.color;
+            }
+
+            if (!cell.dataset.borderRight) {
+                cell.style.borderRight = borderColor;
+            }else{
+                const build = buildingMap.get(cell.dataset.borderRight);
+                cell.style.borderRight = build.color;
+            }
+
+            if (!cell.dataset.borderLeft) {
+                cell.style.borderLeft = borderColor;
+            }else{
+                const build = buildingMap.get(cell.dataset.borderLeft);
+                cell.style.borderLeft = build.color;
             }
         }
 
         const cellVisual = cell.querySelector('img');
 
-        if (enabbleProps) {
-
-            const cellVisual = cell.querySelector('img');
-            cellVisual.style.opacity = cell.dataset.props ? 1 : 0;
-        }
-        else{
-            cellVisual.style.opacity = 0;
-        }
-        
+        cellVisual.style.opacity = enableProps ? 0 : !cell.dataset.props ? 0 : 1;
     }
 }
 
