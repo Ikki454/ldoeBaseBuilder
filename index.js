@@ -165,6 +165,7 @@ function generateRessources(ressources) {
     //show ressourece list - denie
     for (const r of resultRessources) {
 
+        if (r.quantity < 0) continue;
         const ressourceItem = document.createElement('li');
 
         const article = document.createElement('div');
@@ -210,7 +211,7 @@ function onClickBuilding(event) {
 
         if (!cell.dataset.props) {
             const cellVisual = cell.querySelector('img');
-            cellVisual.src = null;
+            cellVisual.src = '';
             cellVisual.style.opacity = 0;
         }
     }
@@ -422,45 +423,10 @@ function clearBorders(index) {
 
     clearAllBorders(grid.children[index]);
 
-    if (leftCell) {
-        if (!leftCell.dataset.buildingRight) {
-            leftCell.style.borderRight = borderColor;
-        }
-        else if (leftCell.dataset.buildingRight !== currentBuilding) {
-            leftCell.style.borderRight = !enableBuildings ? 
-                `3px solid ${buildingMap.get(leftCell.dataset.buildingTop).color}`: borderColor;
-        }
-    }
-
-    if (rightCell) {
-        if (!rightCell.dataset.buildingLeft) {
-            rightCell.style.borderLeft = borderColor;
-        }
-        else if (rightCell.dataset.buildingLeft !== currentBuilding) {
-            rightCell.style.borderLeft = !enableBuildings ? 
-                `3px solid ${buildingMap.get(rightCell.dataset.buildingTop).color}`: borderColor;
-        }
-    }
-
-    if (topCell) {
-        if (!topCell.dataset.buildingBottom) {
-            topCell.style.borderBottom = borderColor;
-        }
-        else if (topCell.dataset.buildingBottom !== currentBuilding) {
-            topCell.style.borderBottom = !enableBuildings ? 
-                `3px solid ${buildingMap.get(topCell.dataset.buildingTop).color}`: borderColor;
-        }
-    }
-
-    if (bottomCell) {
-        if (!bottomCell.dataset.buildingTop) {
-            bottomCell.style.borderTop = borderColor;
-        }
-        else if (bottomCell.dataset.buildingTop !== currentBuilding) {
-            bottomCell.style.borderTop = !enableBuildings ? 
-                `3px solid ${buildingMap.get(bottomCell.dataset.buildingTop).color}`: borderColor;
-        }
-    }
+    if (leftCell) clearAllBorders(leftCell);
+    if (rightCell) clearAllBorders(rightCell);
+    if (topCell) clearAllBorders(topCell);
+    if (bottomCell) clearAllBorders(bottomCell);
 }
 function clearAllBorders(cell) {
 
@@ -469,33 +435,33 @@ function clearAllBorders(cell) {
     if (!cell.dataset.buildingTop) {
         cell.style.borderTop = borderColor;
     }
-    else if (cell.dataset.buildingTop !== currentBuilding) {
-        cell.style.borderTop = enableBuildings ? 
-            `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`: borderColor;
+    else {
+        cell.style.borderTop = enableBuildings ? borderColor :
+            `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`;
     }
 
     if (!cell.dataset.buildingBottom) {
         cell.style.borderBottom = borderColor;
     }
-    else if (cell.dataset.buildingBottom !== currentBuilding) {
-        cell.style.borderBottom = enableBuildings ? 
-            `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`: borderColor;
+    else {
+        cell.style.borderBottom = enableBuildings ? borderColor :
+            `3px solid ${buildingMap.get(cell.dataset.buildingBottom).color}`;
     }
 
     if (!cell.dataset.buildingLeft) {
         cell.style.borderLeft = borderColor;
     }
-    else if (cell.dataset.buildingLeft !== currentBuilding) {
-        cell.style.borderLeft = enableBuildings ? 
-            `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`: borderColor;
+    else {
+        cell.style.borderLeft = enableBuildings ? borderColor :
+            `3px solid ${buildingMap.get(cell.dataset.buildingLeft).color}`;
     }
 
     if (!cell.dataset.buildingRight) {
         cell.style.borderRight = borderColor;
     }
-    else if (cell.dataset.buildingRight !== currentBuilding) {
-        cell.style.borderRight = enableBuildings ? 
-            `3px solid ${buildingMap.get(cell.dataset.buildingTop).color}`: borderColor;
+    else {
+        cell.style.borderRight = enableBuildings ? borderColor :
+            `3px solid ${buildingMap.get(cell.dataset.buildingRight).color}`;
     }
 }
 
@@ -651,58 +617,17 @@ function enableConstruction() {
         if (enableBuildings) {
 
             cell.style.backgroundColor = cell.dataset.noBuild ? noBuildableColor : buildableColor;
-
-            cell.style.borderTop = borderColor;
-            cell.style.borderBottom = borderColor;
-            cell.style.borderRight = borderColor;
-            cell.style.borderLeft = borderColor;
         }
-        else{
+        else {
             if (cell.dataset.building) {
                 const build = buildingMap.get(cell.dataset.building);
                 cell.style.backgroundColor = build.color;
             }
-            else {
-
-                cell.style.backgroundColor = cell.dataset.noBuild ? noBuildableColor : buildableColor;
-
-                cell.style.borderTop = borderColor;
-                cell.style.borderBottom = borderColor;
-                cell.style.borderRight = borderColor;
-                cell.style.borderLeft = borderColor;
-            }
-
-            if (!cell.dataset.buildingTop) {
-                cell.style.borderTop = borderColor;
-            }else{
-                const build = buildingMap.get(cell.dataset.buildingTop);
-                cell.style.borderTop = build.color;
-            }
-
-            if (!cell.dataset.borderBottom) {
-                cell.style.borderBottom = borderColor;
-            }else{
-                const build = buildingMap.get(cell.dataset.borderBottom);
-                cell.style.borderBottom = build.color;
-            }
-
-            if (!cell.dataset.borderRight) {
-                cell.style.borderRight = borderColor;
-            }else{
-                const build = buildingMap.get(cell.dataset.borderRight);
-                cell.style.borderRight = build.color;
-            }
-
-            if (!cell.dataset.borderLeft) {
-                cell.style.borderLeft = borderColor;
-            }else{
-                const build = buildingMap.get(cell.dataset.borderLeft);
-                cell.style.borderLeft = build.color;
-            }
         }
 
-        const cellVisual = cell.querySelector('img');
+        clearAllBorders(cell);
 
+        const cellVisual = cell.querySelector('img');
         cellVisual.style.opacity = enableProps ? 0 : !cell.dataset.props ? 0 : 1;
     }
 }
