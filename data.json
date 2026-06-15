@@ -903,47 +903,37 @@
             ]
         },
         {
-            "name": "Home brewery",
-            "visual": "images/buildings/home_brewery.webp",
+            "name": "storage for explosives",
+            "visual": "images/buildings/storage_for_explosives.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
-            "max": 2,
+            "floor_tier": [3, 4, 5],
+            "max": 1,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
-            "name": "entrepot de minerai",
-            "visual": "images/buildings/home_brewery.webp",
+            "name": "ore storage",
+            "visual": "images/buildings/ore_storage.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
-            "max": 2,
-            "size": [1, 1],
+            "floor_tier": [0, 1, 2, 3, 4, 5],
+            "max": 1,
+            "size": [2, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
-            "name": "stockage d'equipement",
-            "visual": "images/buildings/sewing_rack.webp",
+            "name": "storage for equipment",
+            "visual": "images/buildings/storage_for_equipment.webp",
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": 2,
-            "max": 1,
+            "floor_tier": [2, 3, 4, 5],
+            "max": 20,
             "size": [1, 1],
 
             "cost": []
@@ -954,7 +944,7 @@
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": 3,
+            "floor_tier": [3, 4, 5],
             "max": 1,
             "size": [1, 1],
 
@@ -1707,19 +1697,39 @@
             "cost": []
         },
         {
-            "name": "armoir",
-            "visual": "images/buildings/armoir.webp",
+            "name": "wardrobe",
+            "visual": "images/buildings/wardrobe.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [2],
+            "floor_tier": [1, 2, 3, 4, 5],
             "max": 1,
             "size": [1, 1],
 
             "cost": [
                 {
-                    "name": "pine log",
-                    "quantity": 1
+                    "name": "iron plate",
+                    "quantity": 5
+                },
+                {
+                    "name": "thick fabric",
+                    "quantity": 12
+                },
+                {
+                    "name": "adhesive",
+                    "quantity": 18
+                },
+                {
+                    "name": "pine plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "duct tape",
+                    "quantity": 12
+                },
+                {
+                    "name": "nails",
+                    "quantity": 10
                 }
             ]
         },
@@ -1729,7 +1739,7 @@
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
+            "floor_tier": [0, 1, 2, 3, 4, 5],
             "max": 2,
             "size": [1, 1],
 
@@ -1754,31 +1764,63 @@
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
+            "floor_tier": [0, 1, 2, 3, 4, 5],
             "max": 1,
             "size": [1, 1],
 
             "cost": [
                 {
-                    "name": "pine log",
-                    "quantity": 1
+                    "name": "plant fiber",
+                    "quantity": 15
+                },
+                {
+                    "name": "animal rawhide",
+                    "quantity": 5
+                },
+                {
+                    "name": "rope",
+                    "quantity": 10
+                },
+                {
+                    "name": "adhesive",
+                    "quantity": 3
                 }
             ]
         },
         {
-            "name": "miroir",
-            "visual": "images/buildings/miroir.webp",
+            "name": "mirror",
+            "visual": "images/buildings/mirror.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
+            "floor_tier": [1, 2, 3, 4, 5],
             "max": 1,
             "size": [1, 1],
 
             "cost": [
                 {
-                    "name": "pine log",
-                    "quantity": 1
+                    "name": "iron plate",
+                    "quantity": 5
+                },
+                {
+                    "name": "bolts",
+                    "quantity": 10
+                },
+                {
+                    "name": "adhesive",
+                    "quantity": 15
+                },
+                {
+                    "name": "pine plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "duct tape",
+                    "quantity": 12
+                },
+                {
+                    "name": "light bulb",
+                    "quantity": 3
                 }
             ]
         },
@@ -1788,7 +1830,7 @@
             "type": "props",
             "buildingType": "other",
 
-            "floor_tier": [0],
+            "floor_tier": [0, 1, 2, 3, 4, 5],
             "max": 1,
             "size": [1, 1],
 
@@ -1812,56 +1854,47 @@
             ]
         },
         {
-            "name": "weapons rack",
-            "visual": "images/buildings/weapons_rack.webp",
+            "name": "weapon rack",
+            "visual": "images/buildings/weapon_rack.webp",
             "type": "props",
             "buildingType": "other",
 
-            "floor_tier": [3],
-            "max": 3,
+            "floor_tier": [2, 3, 4, 5],
+            "max": 1,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "oak plank",
-                    "quantity": 10
-                },
-                {
-                    "name": "iron plate",
-                    "quantity": 15
-                },
-                {
-                    "name": "",
-                    "quantity": 10
-                },
-                {
-                    "name": "ball bearning",
-                    "quantity": 20
-                },
-                {
-                    "name": "light bulb",
-                    "quantity": 4
-                },
-                {
-                    "name": "plastic",
-                    "quantity": 12
-                }
-            ]
+            "cost": []
         },
         {
-            "name": "toilette exterieur",
-            "visual": "images/buildings/toilette_exterieur.webp",
+            "name": "outdoor toilet",
+            "visual": "images/buildings/outdoor_toilet.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
-            "max": 2,
-            "size": [1, 1],
+            "floor_tier": [0, 1, 2, 3, 4, 5],
+            "max": 1,
+            "size": [2, 1],
 
             "cost": [
                 {
-                    "name": "pine log",
-                    "quantity": 1
+                    "name": "ash plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "peat",
+                    "quantity": 25
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 5
+                },
+                {
+                    "name": "nails",
+                    "quantity": 18
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 20
                 }
             ]
         },
@@ -1922,30 +1955,54 @@
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [1, 2, 3, 4, 5],
-            "max": 2,
+            "floor_tier": [2, 3, 4, 5],
+            "max": 3,
             "size": [1, 1],
 
             "cost": [
                 {
-                    "name": "pine log",
-                    "quantity": 10
+                    "name": "pine plank",
+                    "quantity": 15
+                },
+                {
+                    "name": "nails",
+                    "quantity": 15
+                },
+                {
+                    "name": "empty can",
+                    "quantity": 5
+                },
+                {
+                    "name": "plastic",
+                    "quantity": 7
                 }
             ]
         },
         {
-            "name": "canape",
-            "visual": "images/buildings/canape.webp",
+            "name": "cozy couch",
+            "visual": "images/buildings/cozy_couch.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [1, 2, 3, 4, 5],
-            "max": 2,
+            "floor_tier": [2, 3, 4, 5],
+            "max": 4,
             "size": [1, 1],
 
             "cost": [
                 {
-                    "name": "pine log",
+                    "name": "oak plank",
+                    "quantity": 20
+                },
+                {
+                    "name": "iron bar",
+                    "quantity": 15
+                },
+                {
+                    "name": "nails",
+                    "quantity": 10
+                },
+                {
+                    "name": "thick fabric",
                     "quantity": 10
                 }
             ]
@@ -1988,13 +2045,13 @@
             ]
         },
         {
-            "name": "bed",
-            "visual": "images/buildings/bed.webp",
+            "name": "comfortable bed",
+            "visual": "images/buildings/comfortable_bed.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [3, 4, 5],
-            "max": 0,
+            "floor_tier": [2, 3, 4, 5],
+            "max": 4,
             "size": [1, 1],
 
             "cost": [
@@ -2007,7 +2064,7 @@
                     "quantity": 8
                 },
                 {
-                    "name": "bolts",
+                    "name": "nails",
                     "quantity": 10
                 },
                 {
@@ -2026,7 +2083,7 @@
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": 0,
+            "floor_tier": [0, 2, 3, 4, 5],
             "max": 3,
             "size": [1, 1],
 
@@ -2058,13 +2115,13 @@
             ]
         },
         {
-            "name": "fleur en pneu",
-            "visual": "images/buildings/fleur_en_pneau.webp",
+            "name": "tire flowerbed",
+            "visual": "images/buildings/tire_flowerbed.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [3, 4, 5],
-            "max": 1,
+            "floor_tier": [0, 1, 2, 3, 4, 5],
+            "max": 3,
             "size": [1, 1],
 
             "cost": [
@@ -2191,7 +2248,7 @@
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": -1,
+            "floor_tier": [0, 1, 2, 3, 4, 5],
             "max": 80,
             "size": [1, 1],
 
@@ -2211,13 +2268,13 @@
             ]
         },
         {
-            "name": "piège a fil",
-            "visual": "images/buildings/piege_a_fil.webp",
+            "name": "trip wire trap",
+            "visual": "images/buildings/trip_wire_trap.webp",
             "type": "props",
             "buildingType": "other",
             
             "floor_tier": [0, 1, 2, 3, 4, 5],
-            "max": 80,
+            "max": 1,
             "size": [1, 1],
 
             "cost": [
@@ -2241,7 +2298,7 @@
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
+            "floor_tier": [0, 1, 2, 3, 4, 5],
             "max": 20,
             "size": [1, 1],
 
@@ -2262,7 +2319,7 @@
         },
         {
             "name": "turret",
-            "visual": "images/buildings/tourelle.webp",
+            "visual": "images/buildings/turret.webp",
             "type": "props",
             "buildingType": "other",
             
@@ -2361,28 +2418,20 @@
 
             "cost": [
                 {
-                    "name": "peat",
-                    "quantity": 25
-                },
-                {
-                    "name": "sulfur",
-                    "quantity": 10
-                },
-                {
-                    "name": "plastic",
-                    "quantity": 20
-                },
-                {
-                    "name": "ash plank",
-                    "quantity": 20
-                },
-                {
-                    "name": "light bulb",
+                    "name": "bolts",
                     "quantity": 5
                 },
                 {
-                    "name": "batteries",
-                    "quantity": 15
+                    "name": "transistor",
+                    "quantity": 5
+                },
+                {
+                    "name": "iron bar",
+                    "quantity": 1
+                },
+                {
+                    "name": "duct tape",
+                    "quantity": 2
                 }
             ]
         },
@@ -2496,21 +2545,16 @@
             ]
         },
         {
-            "name": "bloc de glace",
-            "visual": "images/buildings/scie.webp",
+            "name": "ice block",
+            "visual": "images/buildings/ice_block.webp",
             "type": "props",
             "buildingType": "special",
             
-            "floor_tier": [3, 4, 5],
+            "floor_tier": [0, 1, 2, 3, 4, 5],
             "max": 1,
-            "size": [2, 1],
+            "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "peat",
-                    "quantity": 25
-                }
-            ]
+            "cost": []
         },
         {
             "name": "Cat tree",
@@ -2587,19 +2631,63 @@
             ]
         },
         {
-            "name": "moto",
-            "visual": "images/buildings/cat_tree.webp",
+            "name": "chopper",
+            "visual": "images/buildings/chopper.webp",
             "type": "props",
             "buildingType": "special",
             
-            "floor_tier": [3, 4, 5],
+            "floor_tier": [2, 3, 4, 5],
             "max": 1,
             "size": [2, 2],
 
             "cost": [
                 {
-                    "name": "peat",
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "iron bar",
+                    "quantity": 5
+                },
+                {
+                    "name": "bolts",
+                    "quantity": 35
+                },
+                {
+                    "name": "ball bearing",
+                    "quantity": 10
+                },
+                {
+                    "name": "chopper fork",
                     "quantity": 1
+                },
+                {
+                    "name": "chopper gas tank",
+                    "quantity": 1
+                },
+                {
+                    "name": "basics backpack",
+                    "quantity": 4
+                },
+                {
+                    "name": "scrap metal",
+                    "quantity": 30
+                },
+                {
+                    "name": "rubber parts",
+                    "quantity": 20
+                },
+                {
+                    "name": "chopper wheel",
+                    "quantity": 2
+                },
+                {
+                    "name": "wiring",
+                    "quantity": 10
+                },
+                {
+                    "name": "engine parts",
+                    "quantity": 20
                 }
             ]
         },
@@ -2621,25 +2709,81 @@
             ]
         },
         {
-            "name": "boat",
-            "visual": "images/buildings/garage.webp",
+            "name": "motorboat",
+            "visual": "images/buildings/motorboat.webp",
             "type": "props",
             "buildingType": "special",
             
             "floor_tier": [3, 4, 5],
             "max": 1,
-            "size": [2, 2],
+            "size": [4, 2],
 
             "cost": [
                 {
-                    "name": "peat",
-                    "quantity": 1
+                    "name": "copper bar",
+                    "quantity": 10
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 35
+                },
+                {
+                    "name": "hammer",
+                    "quantity": 3
+                },
+                {
+                    "name": "bolts",
+                    "quantity": 10
+                },
+                {
+                    "name": "nails",
+                    "quantity": 10
+                },
+                {
+                    "name": "wrench",
+                    "quantity": 3
+                },
+                {
+                    "name": "aluminium plate",
+                    "quantity": 30
+                },
+                {
+                    "name": "rubber",
+                    "quantity": 30
+                },
+                {
+                    "name": "boat engine",
+                    "quantity": 2
+                },
+                {
+                    "name": "gasoline",
+                    "quantity": 20
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 16
+                },
+                {
+                    "name": "pump",
+                    "quantity": 10
+                },
+                {
+                    "name": "plastic",
+                    "quantity": 30
+                },
+                {
+                    "name": "carbon composite",
+                    "quantity": 20
+                },
+                {
+                    "name": "spring",
+                    "quantity": 30
                 }
             ]
         },
         {
             "name": "ATV",
-            "visual": "images/buildings/garage.webp",
+            "visual": "images/buildings/ATV.webp",
             "type": "props",
             "buildingType": "special",
             
@@ -2678,7 +2822,7 @@
             
             "floor_tier": [3, 4, 5],
             "max": 1,
-            "size": [2, 2],
+            "size": [3, 3],
 
             "cost": [
                 {
@@ -2932,6 +3076,26 @@
     {
       "name": "bottle of water",
       "visual": "images/ressources/bottle_of_water.webp"
+    },
+    {
+      "name": "transistor",
+      "visual": "images/ressources/transistor.webp"
+    },
+    {
+      "name": "boat engine",
+      "visual": "images/ressources/boat_engine.webp"
+    },
+    {
+      "name": "gasoline",
+      "visual": "images/ressources/gasoline.webp"
+    },
+    {
+      "name": "pump",
+      "visual": "images/ressources/pump.webp"
+    },
+    {
+      "name": "carbon composite",
+      "visual": "images/ressources/carbon_composite.webp"
     }
   ]
 }
