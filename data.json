@@ -558,7 +558,7 @@
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3, 4, 5],
+            "floor_tier": 3,
             "max": 40,
             "size": [1, 1],
 
@@ -611,7 +611,7 @@
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3, 4, 5],
+            "floor_tier": 3,
             "max": 40,
             "size": [1, 1],
 
@@ -668,14 +668,54 @@
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3, 4, 5],
+            "floor_tier": 3,
             "max": 40,
             "size": [1, 1],
 
             "cost": [
                 {
                     "name": "pine log",
-                    "quantity": 1
+                    "quantity": 3
+                },
+                {
+                    "name": "plant fiber",
+                    "quantity": 5
+                },
+                {
+                    "name": "pine plank",
+                    "quantity": 10
+                },
+                {
+                    "name": "iron bar",
+                    "quantity": 5
+                },
+                {
+                    "name": "bolts",
+                    "quantity": 5
+                },
+                {
+                    "name": "oak plank",
+                    "quantity": 45
+                },
+                {
+                    "name": "nails",
+                    "quantity": 15
+                },
+                {
+                    "name": "steel bar",
+                    "quantity": 5
+                },
+                {
+                    "name": "steel plate",
+                    "quantity": 55
+                },
+                {
+                    "name": "iron plate",
+                    "quantity": 80
+                },
+                {
+                    "name": "ash plank",
+                    "quantity": 80
                 }
             ]
         },
@@ -685,16 +725,11 @@
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3],
-            "max": 2,
+            "floor_tier": 1,
+            "max": 1,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
             "name": "warehouse",
@@ -702,16 +737,11 @@
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3],
-            "max": 2,
-            "size": [1, 1],
+            "floor_tier": -1,
+            "max": 1,
+            "size": [2, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
             "name": "fridge",
@@ -719,16 +749,11 @@
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3, 4, 5],
+            "floor_tier": 3,
             "max": 2,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
             "name": "another round",
@@ -736,45 +761,35 @@
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [0, 1, 2, 3, 4, 5],
+            "floor_tier": -1,
             "max": 1,
             "size": [1, 1],
 
             "cost": []
         },
         {
-            "name": "pharmacie",
-            "visual": "images/buildings/pharmacie.webp",
+            "name": "medicine cabinet",
+            "visual": "images/buildings/medicine_cabinet.webp",
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3],
+            "floor_tier": -1,
             "max": 2,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
-            "name": "triomphe",
-            "visual": "images/buildings/triomphe.webp",
+            "name": "triumph",
+            "visual": "images/buildings/triumph.webp",
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3],
-            "max": 2,
+            "floor_tier": 3,
+            "max": 1,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
             "name": "division box",
@@ -782,7 +797,7 @@
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [0, 1, 2, 3, 4, 5],
+            "floor_tier": -1,
             "max": 2,
             "size": [1, 1],
 
@@ -806,72 +821,69 @@
             ]
         },
         {
-            "name": "caisse electronique",
-            "visual": "images/buildings/caisse_electronique.webp",
+            "name": "electronics crate",
+            "visual": "images/buildings/electronics_crate.webp",
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3],
-            "max": 2,
+            "floor_tier": 2,
+            "max": 1,
+            "size": [1, 1],
+
+            "cost": []
+        },
+        {
+            "name": "fish fridge",
+            "visual": "images/buildings/fish_fridge.webp",
+            "type": "props",
+            "buildingType": "storage",
+            
+            "floor_tier": 3,
+            "max": 1,
+            "size": [1, 1],
+
+            "cost": []
+        },
+        {
+            "name": "safe",
+            "visual": "images/buildings/safe.webp",
+            "type": "props",
+            "buildingType": "storage",
+            
+            "floor_tier": 3,
+            "max": 5,
             "size": [1, 1],
 
             "cost": [
                 {
-                    "name": "pine log",
-                    "quantity": 1
+                    "name": "tungsten bar",
+                    "quantity": 20
+                },
+                {
+                    "name": "ash plank",
+                    "quantity": 5
+                },
+                {
+                    "name": "ball bearing",
+                    "quantity": 7
+                },
+                {
+                    "name": "hi-tech component",
+                    "quantity": 5
                 }
             ]
         },
         {
-            "name": "frigo a poisson",
-            "visual": "images/buildings/frigo_a_piosson.webp",
+            "name": "fuel tank",
+            "visual": "images/buildings/fuel_tank.webp",
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3],
-            "max": 2,
+            "floor_tier": 1,
+            "max": 1,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
-        },
-        {
-            "name": "coffre fort",
-            "visual": "images/buildings/coffre_fort.webp",
-            "type": "props",
-            "buildingType": "storage",
-            
-            "floor_tier": [3],
-            "max": 2,
-            "size": [1, 1],
-
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
-        },
-        {
-            "name": "reservoir",
-            "visual": "images/buildings/reservoir.webp",
-            "type": "props",
-            "buildingType": "storage",
-            
-            "floor_tier": [3],
-            "max": 2,
-            "size": [1, 1],
-
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
             "name": "ratelier de confiture",
@@ -907,6 +919,82 @@
                 }
             ]
         },
+        {
+            "name": "entrepot de minerai",
+            "visual": "images/buildings/home_brewery.webp",
+            "type": "props",
+            "buildingType": "other",
+            
+            "floor_tier": [0],
+            "max": 2,
+            "size": [1, 1],
+
+            "cost": [
+                {
+                    "name": "pine log",
+                    "quantity": 1
+                }
+            ]
+        },
+        {
+            "name": "stockage d'equipement",
+            "visual": "images/buildings/sewing_rack.webp",
+            "type": "props",
+            "buildingType": "storage",
+            
+            "floor_tier": 2,
+            "max": 1,
+            "size": [1, 1],
+
+            "cost": []
+        },
+        {
+            "name": "storage for parts",
+            "visual": "images/buildings/storage_for_parts.webp",
+            "type": "props",
+            "buildingType": "storage",
+            
+            "floor_tier": 3,
+            "max": 1,
+            "size": [1, 1],
+
+            "cost": []
+        },
+        {
+            "name": "etagere a cargaison",
+            "visual": "images/buildings/home_brewery.webp",
+            "type": "props",
+            "buildingType": "other",
+            
+            "floor_tier": [0],
+            "max": 2,
+            "size": [1, 1],
+
+            "cost": [
+                {
+                    "name": "pine log",
+                    "quantity": 1
+                }
+            ]
+        },
+        {
+            "name": "garde a manger",
+            "visual": "images/buildings/home_brewery.webp",
+            "type": "props",
+            "buildingType": "other",
+            
+            "floor_tier": [0],
+            "max": 2,
+            "size": [1, 1],
+
+            "cost": [
+                {
+                    "name": "pine log",
+                    "quantity": 1
+                }
+            ]
+        },
+
         {
             "name": "Garden Bed",
             "visual": "images/buildings/garden_bed.webp",
@@ -1829,8 +1917,8 @@
             ]
         },
         {
-            "name": "table",
-            "visual": "images/buildings/table.webp",
+            "name": "dining table",
+            "visual": "images/buildings/dining_table.webp",
             "type": "props",
             "buildingType": "other",
             
@@ -1933,13 +2021,13 @@
             ]
         },
         {
-            "name": "épicea",
-            "visual": "images/buildings/epicea.webp",
+            "name": "spruce",
+            "visual": "images/buildings/spruce.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [3, 4, 5],
-            "max": 1,
+            "floor_tier": 0,
+            "max": 3,
             "size": [1, 1],
 
             "cost": [
@@ -1949,7 +2037,7 @@
                 },
                 {
                     "name": "truck wheel",
-                    "quantity": 30
+                    "quantity": 3
                 },
                 {
                     "name": "green paint",
@@ -2098,12 +2186,12 @@
             ]
         },
         {
-            "name": "piège a pique",
-            "visual": "images/buildings/piege_a_pique.webp",
+            "name": "spike trap",
+            "visual": "images/buildings/spike_trap.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
+            "floor_tier": -1,
             "max": 80,
             "size": [1, 1],
 
