@@ -804,21 +804,16 @@
             "cost": []
         },
         {
-            "name": "depot de dechet",
-            "visual": "images/buildings/depot_de_dechet.webp",
+            "name": "junk repository",
+            "visual": "images/buildings/junk_repository.webp",
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3],
-            "max": 2,
+            "floor_tier": [2, 3, 4, 5],
+            "max": 1,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
             "name": "electronics crate",
@@ -886,21 +881,16 @@
             "cost": []
         },
         {
-            "name": "ratelier de confiture",
-            "visual": "images/buildings/ratelier_confiture.webp",
+            "name": "jam repository",
+            "visual": "images/buildings/junk_repository.webp",
             "type": "props",
             "buildingType": "storage",
             
-            "floor_tier": [3],
-            "max": 2,
+            "floor_tier": [2, 3, 4, 5],
+            "max": 1,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
+            "cost": []
         },
         {
             "name": "storage for explosives",
@@ -1921,30 +1911,37 @@
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
-            "max": 2,
+            "floor_tier": [0, 1, 2, 3, 4, 5],
+            "max": 4,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 10
-                }
-            ]
+            "cost": []
         },
         {
-            "name": "plante interieur",
-            "visual": "images/buildings/plante_interieur.webp",
+            "name": "house plant",
+            "visual": "images/buildings/houseplant.webp",
             "type": "props",
             "buildingType": "other",
             
             "floor_tier": [1, 2, 3, 4, 5],
-            "max": 2,
+            "max": 15,
             "size": [1, 1],
 
             "cost": [
                 {
-                    "name": "pine log",
+                    "name": "pine plank",
+                    "quantity": 2
+                },
+                {
+                    "name": "empty bottle",
+                    "quantity": 1
+                },
+                {
+                    "name": "plant fiber",
+                    "quantity": 5
+                },
+                {
+                    "name": "seeds",
                     "quantity": 10
                 }
             ]
@@ -2008,8 +2005,8 @@
             ]
         },
         {
-            "name": "lampadair",
-            "visual": "images/buildings/lampadair.webp",
+            "name": "floor lamp",
+            "visual": "images/buildings/floor_lamp.webp",
             "type": "props",
             "buildingType": "other",
             
@@ -2226,19 +2223,27 @@
             ]
         },
         {
-            "name": "mangeoir",
-            "visual": "images/buildings/mangeoir.webp",
+            "name": "horse feeder",
+            "visual": "images/buildings/horse_feeder.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [3, 4, 5],
-            "max": 1,
+            "floor_tier": [0],
+            "max": 4,
             "size": [1, 1],
 
             "cost": [
                 {
-                    "name": "pine log",
-                    "quantity": 1
+                    "name": "oak plank",
+                    "quantity": 5
+                },
+                {
+                    "name": "iron bar",
+                    "quantity": 4
+                },
+                {
+                    "name": "nails",
+                    "quantity": 4
                 }
             ]
         },
@@ -2480,7 +2485,7 @@
             
             "floor_tier": [3, 4, 5],
             "max": 1,
-            "size": [2, 1],
+            "size": [1, 2],
 
             "cost": [
                 {
@@ -2488,7 +2493,7 @@
                     "quantity": 15
                 },
                 {
-                    "name": "iron ore",
+                    "name": "iron bar",
                     "quantity": 15
                 }
             ]
@@ -2519,23 +2524,6 @@
             "floor_tier": [3, 4, 5],
             "max": 1,
             "size": [1, 1],
-
-            "cost": [
-                {
-                    "name": "peat",
-                    "quantity": 25
-                }
-            ]
-        },
-        {
-            "name": "moto en panne",
-            "visual": "images/buildings/scie.webp",
-            "type": "props",
-            "buildingType": "special",
-            
-            "floor_tier": [3, 4, 5],
-            "max": 1,
-            "size": [2, 1],
 
             "cost": [
                 {
@@ -2666,7 +2654,7 @@
                     "quantity": 1
                 },
                 {
-                    "name": "basics backpack",
+                    "name": "basic backpack",
                     "quantity": 4
                 },
                 {
@@ -2697,7 +2685,7 @@
             "type": "props",
             "buildingType": "special",
             
-            "floor_tier": [3, 4, 5],
+            "floor_tier": [0],
             "max": 1,
             "size": [4, 3],
 
@@ -3096,6 +3084,30 @@
     {
       "name": "carbon composite",
       "visual": "images/ressources/carbon_composite.webp"
+    },
+    {
+      "name": "empty bottle",
+      "visual": "images/ressources/empty_bottle.webp"
+    },
+    {
+      "name": "chopper fork",
+      "visual": "images/ressources/chopper_fork.webp"
+    },
+    {
+      "name": "chopper gas tank",
+      "visual": "images/ressources/chopper_gas_tank.webp"
+    },
+    {
+      "name": "chopper wheel",
+      "visual": "images/ressources/chopper_wheel.webp"
+    },
+    {
+      "name": "basic backpack",
+      "visual": "images/ressources/basic_backpack.webp"
+    },
+    {
+      "name": "engine parts",
+      "visual": "images/ressources/engine_part.webp"
     }
   ]
 }
