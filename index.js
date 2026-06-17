@@ -21,6 +21,22 @@ let enableProps = false;
 let buildingMap;
 let ressourceMap;
 
+//del btn
+const delBtns = document.querySelectorAll(".d-dropdown-btn");
+delBtns.forEach(input => {
+    input.addEventListener("click", () => {
+        switch (input.id.toLowerCase) {
+            case 'floor':
+                break;
+
+            case 'wall':
+                break;
+
+            case 'props':
+                break;
+        }
+    });
+});
 //clear dropdown
 const clearBtns = document.querySelectorAll(".c-dropdown-btn");
 clearBtns.forEach(input => {

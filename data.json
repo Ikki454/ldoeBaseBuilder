@@ -1889,21 +1889,16 @@
             ]
         },
         {
-            "name": "gramophone",
-            "visual": "images/buildings/gramophone.webp",
+            "name": "vinyl record",
+            "visual": "images/buildings/vinyl_record.webp",
             "type": "props",
             "buildingType": "other",
             
-            "floor_tier": [0],
-            "max": 2,
+            "floor_tier": [0, 1, 2, 3, 4, 5],
+            "max": 1,
             "size": [1, 1],
 
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 10
-                }
-            ]
+            "cost": []
         },
         {
             "name": "mannequin",
@@ -2389,11 +2384,23 @@
             "visual": "images/buildings/christmas_tree.webp",
             "type": "props",
             "buildingType": "other",
-            "color": "blue",
+            
+            "floor_tier": [0, 1, 2, 3, 4, 5],
+            "max": 1,
+            "size": [1, 1],
+
             "cost": [
                 {
                     "name": "pine log",
-                    "quantity": 1
+                    "quantity": 10
+                },
+                {
+                    "name": "rope",
+                    "quantity": 15
+                },
+                {
+                    "name": "duct tape",
+                    "quantity": 10
                 }
             ]
         },
@@ -2402,15 +2409,13 @@
             "visual": "images/buildings/fireplace.webp",
             "type": "props",
             "buildingType": "other",
-            "color": "blue",
-            "cost": [
-                {
-                    "name": "pine log",
-                    "quantity": 1
-                }
-            ]
-        },
+            
+            "floor_tier": [1, 2, 3, 4, 5],
+            "max": 1,
+            "size": [1, 1],
 
+            "cost": []
+        },
         {
             "name": "radio",
             "visual": "images/buildings/radio.webp",
