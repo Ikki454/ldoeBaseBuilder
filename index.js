@@ -49,6 +49,7 @@ delBtns.forEach(input => {
                 break;
         }
 
+        cleanGrid();
         document.querySelector(".building-cell.selected")?.classList.remove("selected");
         currentBuilding = null;
     });
@@ -234,20 +235,7 @@ function onClickBuilding(event) {
 
     currentBuilding = target.dataset.name;
 
-    for (const cell of baseGrid.children) {
-
-        clearBorders(cell.dataset.index);
-
-        if (!cell.dataset.building) {
-            cell.style.backgroundColor = cell.dataset.noBuild ? noBuildableColor : buildableColor;
-        }
-
-        if (!cell.dataset.props) {
-            const cellVisual = cell.querySelector('img');
-            cellVisual.src = '';
-            cellVisual.style.opacity = 0;
-        }
-    }
+    cleanGrid();
 }
 function onClickBaseCell(event) {
 
@@ -569,6 +557,23 @@ function clearAllBorders(cell) {
     else {
         cell.style.borderRight = enableBuildings ? borderColor :
             `3px solid ${buildingMap.get(cell.dataset.buildingRight).color}`;
+    }
+}
+
+function cleanGrid() {
+    for (const cell of baseGrid.children) {
+
+        clearBorders(cell.dataset.index);
+
+        if (!cell.dataset.building) {
+            cell.style.backgroundColor = cell.dataset.noBuild ? noBuildableColor : buildableColor;
+        }
+
+        if (!cell.dataset.props) {
+            const cellVisual = cell.querySelector('img');
+            cellVisual.src = '';
+            cellVisual.style.opacity = 0;
+        }
     }
 }
 
