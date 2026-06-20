@@ -15,6 +15,10 @@ const ressourceList = document.querySelector(".ressource-list");
 let ressourcesList = [];
 let ressourcesDenie = [];
 
+let delFloor = false;
+let delWall = false;
+let delProps = false;
+
 let enableBuildings = false;
 let enableProps = false;
 
@@ -25,16 +29,28 @@ let ressourceMap;
 const delBtns = document.querySelectorAll(".d-dropdown-btn");
 delBtns.forEach(input => {
     input.addEventListener("click", () => {
-        switch (input.id.toLowerCase) {
+        switch (input.id.toLowerCase()) {
             case 'floor':
+                delFloor = true;
+                delWall = false;
+                delProps = false;
                 break;
 
             case 'wall':
+                delFloor = false;
+                delWall = true;
+                delProps = false;
                 break;
 
             case 'props':
+                delFloor = false;
+                delWall = false;
+                delProps = true;
                 break;
         }
+
+        document.querySelector(".building-cell.selected")?.classList.remove("selected");
+        currentBuilding = null;
     });
 });
 //clear dropdown
@@ -211,6 +227,7 @@ function generateRessources(ressources) {
 function onClickBuilding(event) {
     const target = event.currentTarget;
 
+    delFloor = false; delWall = false; delProps = false;
     document.querySelector(".building-cell.selected")?.classList.remove("selected");
     
     target.classList.add('selected');
@@ -238,50 +255,81 @@ function onClickBaseCell(event) {
 
     if (targetCell.dataset.noBuild) return;
     
-    if (currentBuilding !== null) {
+    console.log(delFloor, delWall, delProps, currentBuilding);
+    if (currentBuilding !== null || delFloor || delWall || delProps) {
         const building = buildingMap.get(currentBuilding);
 
-        switch (building.type) {
+        const type = currentBuilding !== null ? building.type : 
+            delFloor ? 'floor' : delWall ? 'wall' : 'props';
+
+        switch (type) {
 
             case 'wall':
                 const index = targetCell.dataset.index;
                 const side = getClosestBorder(targetCell, event.clientX, event.clientY);
                 const neighborCell = getNeighborCell(index, side);
 
-                drawBorder(side, targetCell, neighborCell, `3px solid ${building.color}`);
-                    
-                switch (side) {
-                    case 'top':
-                        targetCell.dataset.buildingTop = building.name;
-                        if (neighborCell) neighborCell.dataset.buildingBottom = building.name;     
-                        break;
-                    case 'bottom':
-                        targetCell.dataset.buildingBottom = building.name;
-                        if (neighborCell) neighborCell.dataset.buildingTop = building.name;
-                        break;
-                    case 'left':
-                        targetCell.dataset.buildingLeft = building.name;
-                        if (neighborCell) neighborCell.dataset.buildingRight = building.name;
-                        break;
-                    case 'right':
-                        targetCell.dataset.buildingRight = building.name;
-                        if (neighborCell) neighborCell.dataset.buildingLeft = building.name;
-                        break;
+                if (delWall) {
+                    delBorder(side, targetCell, neighborCell)
                 }
+                else {
+                    drawBorder(side, targetCell, neighborCell, `3px solid ${building.color}`);
+
+                    switch(side) {
+                        case 'top':
+                            targetCell.dataset.buildingTop = building.name;
+                            if (neighborCell) neighborCell.dataset.buildingBottom = building.name;
+                            break;
+
+                        case 'bottom':
+                            targetCell.dataset.buildingBottom = building.name;
+                            if (neighborCell) neighborCell.dataset.buildingTop = building.name;
+                            break;
+
+                        case 'left':
+                            targetCell.dataset.buildingLeft = building.name;
+                            if (neighborCell) neighborCell.dataset.buildingRight = building.name;
+                            break;
+
+                        case 'right':
+                            targetCell.dataset.buildingRight = building.name;
+                            if (neighborCell) neighborCell.dataset.buildingLeft = building.name;
+                            break;
+                    }
+                }
+
                 break;
 
             case 'floor':
-                targetCell.style.backgroundColor = building.color;
-                targetCell.dataset.building = building.name;
+                if (delFloor) {
+
+                    targetCell.style.backgroundColor = buildableColor;
+                    delete(targetCell.dataset.building);
+                }
+                else {
+
+                    targetCell.style.backgroundColor = building.color;
+                    targetCell.dataset.building = building.name;
+                }
                 break;
 
             case 'props':
                 const propsVisual = targetCell.querySelector('img');
 
-                propsVisual.src = building.visual;
-                propsVisual.style.opacity = 1.0;
+                if (delProps) {
 
-                targetCell.dataset.props = building.name;
+                    propsVisual.src = null;
+                    propsVisual.style.opacity = 0;
+
+                    delete(targetCell.dataset.props);
+                }
+                else {
+
+                    propsVisual.src = building.visual;
+                    propsVisual.style.opacity = 1;
+
+                    targetCell.dataset.props = building.name;
+                }
                 break;
         }
 
@@ -409,21 +457,64 @@ function onMouseOverBaseCell(event) {
 
 function drawBorder(side, cell, neighborCell, color) {
     switch (side) {
+
         case 'top':
             cell.style.borderTop = color;
             if (neighborCell) neighborCell.style.borderBottom = color;
             break;
+
         case 'bottom':
             cell.style.borderBottom = color;
             if (neighborCell) neighborCell.style.borderTop = color;
             break;
+
         case 'left':
             cell.style.borderLeft = color;
             if (neighborCell) neighborCell.style.borderRight = color;
             break;
+
         case 'right':
             cell.style.borderRight = color;
             if (neighborCell) neighborCell.style.borderLeft = color;
+            break;
+    }
+}
+function delBorder(side, cell, neighborCell) {
+    switch (side) {
+        case 'top':
+            cell.style.borderTop = borderColor;
+            if (neighborCell) neighborCell.style.borderBottom = borderColor;
+
+            delete cell.dataset.buildingTop;
+            if (neighborCell) delete neighborCell.dataset.buildingBottom;
+
+            break;
+
+        case 'bottom':
+            cell.style.borderBottom = borderColor;
+            if (neighborCell) neighborCell.style.borderTop = borderColor;
+
+            delete cell.dataset.buildingBottom;
+            if (neighborCell) delete neighborCell.dataset.buildingTop;
+
+            break;
+
+        case 'left':
+            cell.style.borderLeft = borderColor;
+            if (neighborCell) neighborCell.style.borderRight = borderColor;
+
+            delete cell.dataset.buildingLeft;
+            if (neighborCell) delete neighborCell.dataset.buildingRight;
+
+            break;
+
+        case 'right':
+            cell.style.borderRight = borderColor;
+            if (neighborCell) neighborCell.style.borderLeft = borderColor;
+
+            delete cell.dataset.buildingRight;
+            if (neighborCell) delete neighborCell.dataset.buildingLeft;
+
             break;
     }
 }
