@@ -25,31 +25,24 @@ let enableProps = false;
 let buildingMap;
 let ressourceMap;
 
-//del btn
+//del dropdown
 const delBtns = document.querySelectorAll(".d-dropdown-btn");
 delBtns.forEach(input => {
     input.addEventListener("click", () => {
-        switch (input.id.toLowerCase()) {
-            case 'floor':
-                delFloor = true;
-                delWall = false;
-                delProps = false;
-                break;
 
-            case 'wall':
-                delFloor = false;
-                delWall = true;
-                delProps = false;
-                break;
+        const id = input.id.toLowerCase();
 
-            case 'props':
-                delFloor = false;
-                delWall = false;
-                delProps = true;
-                break;
-        }
+        const p = document.querySelector(".d-dropdown-p");
+        p.innerText = "Deleting " + id;
+
+        delFloor = id === 'floor';
+        delWall = id === 'wall';
+        delProps = id === 'props';
+
+        p.innerText = "Deleting " + id;
 
         cleanGrid();
+
         document.querySelector(".building-cell.selected")?.classList.remove("selected");
         currentBuilding = null;
     });
@@ -229,8 +222,10 @@ function onClickBuilding(event) {
     const target = event.currentTarget;
 
     delFloor = false; delWall = false; delProps = false;
+    const p = document.querySelector(".d-dropdown-p");
+    p.innerText = "Delete Option";
+
     document.querySelector(".building-cell.selected")?.classList.remove("selected");
-    
     target.classList.add('selected');
 
     currentBuilding = target.dataset.name;
